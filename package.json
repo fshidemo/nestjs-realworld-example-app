@@ -10,7 +10,11 @@
     "start:prod": "node dist/main.js",
     "test": "jest --config=jest.json",
     "test:watch": "jest --watch --config=jest.json",
-    "test:coverage": "jest --config=jest.json --coverage --coverageDirectory=coverage"
+    "test:coverage": "jest --config=jest.json --coverage --coverageDirectory=coverage",
+    "startts": "ts-node -r tsconfig-paths/register src/main.ts",
+    "buildts": "tsc -p tsconfig.build.json",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "swagger": "ts-node src/swagger.ts"
   },
   "repository": {
     "type": "git",
@@ -31,6 +35,10 @@
     "@nestjs/testing": "^6.0.1",
     "@nestjs/typeorm": "^6.0.0",
     "@nestjs/websockets": "^6.0.1",
+    "aws-lambda": "^0.1.2",
+    "aws-serverless-express": "^3.3.5",
+    "express": "^4.16.4",
+    "rimraf": "^2.6.2",
     "class-transformer": "^0.2.0",
     "class-validator": "^0.9.1",
     "crypto": "^1.0.1",
@@ -46,11 +54,15 @@
     "typescript": "^3.3.1"
   },
   "devDependencies": {
+    "tsconfig-paths": "^3.7.0",
+    "tslint": "5.12.1",
+    "typescript": "^3.2.4",
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.21",
     "jest": "^24.5.0",
     "nodemon": "^1.18.10",
     "supertest": "^3.0.0",
+    "serverless-offline": "=4.10.0",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.3",
     "deep-extend": ">=0.5.1",
