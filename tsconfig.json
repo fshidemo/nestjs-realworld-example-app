@@ -4,7 +4,6 @@
     "declaration": true,
     "removeComments": true,
     "noImplicitAny": false,
-    "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es6",

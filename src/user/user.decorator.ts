@@ -6,6 +6,7 @@ export const User = createParamDecorator((data, req) => {
 
   // if route is protected, there is a user set in auth.middleware
   if (!!req.user) {
+    // console.log('Request already has user info', req.user);
     return !!data ? req.user[data] : req.user;
   };
 
@@ -13,7 +14,9 @@ export const User = createParamDecorator((data, req) => {
   const token = req.headers.authorization ? (req.headers.authorization as string).split(' ') : null;
   if (token && token[1]) {
     const decoded: any = jwt.verify(token[1], SECRET);
+    // console.log('From jwt', decoded);
     return !!data ? decoded[data] : decoded.user;
   }
 
+  console.log('Can not find any user info', req.headers ? req.headers.authorization: 'No req header authorization');
 });

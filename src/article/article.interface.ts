@@ -1,5 +1,6 @@
 import { UserData } from '../user/user.interface';
 import { ArticleEntity } from './article.entity';
+
 interface Comment {
   body: string;
 }

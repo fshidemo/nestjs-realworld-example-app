@@ -44,14 +44,18 @@ export class UserController {
   @UsePipes(new ValidationPipe())
   @Post('users/login')
   async login(@Body('user') loginUserDto: LoginUserDto): Promise<UserRO> {
-    const _user = await this.userService.findOne(loginUserDto);
+    const existedUser = await this.userService.findOne(loginUserDto);
 
-    const errors = {User: ' not found'};
-    if (!_user) throw new HttpException({errors}, 401);
+    const errors = {
+      User: ' not found'
+    };
+    if (!existedUser) {
+      throw new HttpException({errors}, 401);
+    }
 
-    const token = await this.userService.generateJWT(_user);
-    const {email, username, bio, image} = _user;
-    const user = {email, token, username, bio, image};
-    return {user}
+    const token = await this.userService.generateJWT(existedUser);
+    const {id, email, username, bio, image} = existedUser;
+    const user = {id, email, token, username, bio, image};
+    return {user};
   }
 }

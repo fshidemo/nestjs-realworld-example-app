@@ -111,6 +111,7 @@ export class UserService {
 
   private buildUserRO(user: UserEntity) {
     const userRO = {
+      id: user.id,
       username: user.username,
       email: user.email,
       bio: user.bio,

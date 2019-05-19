@@ -4,8 +4,8 @@
   "description": "[![Build Status](https://travis-ci.org/anishkny/node-express-realworld-example-app.svg?branch=master)](https://travis-ci.org/anishkny/node-express-realworld-example-app)",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "start:watch": "nodemon",
+    "start": "cross-env NEST_ENV=dev node index.js",
+    "start:watch": "cross-env NEST_ENV=dev nodemon",
     "prestart:prod": "tsc",
     "start:prod": "node dist/main.js",
     "test": "jest --config=jest.json",
@@ -14,7 +14,8 @@
     "startts": "ts-node -r tsconfig-paths/register src/main.ts",
     "buildts": "tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "swagger": "ts-node src/swagger.ts"
+    "swagger": "ts-node src/swagger.ts",
+    "sls": "sls offline --skipCacheInvalidation"
   },
   "repository": {
     "type": "git",
@@ -54,19 +55,21 @@
     "typescript": "^3.3.1"
   },
   "devDependencies": {
-    "tsconfig-paths": "^3.7.0",
-    "tslint": "5.12.1",
-    "typescript": "^3.2.4",
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.21",
+    "atob": ">=2.1.0",
+    "cross-env": "^5.2.0",
+    "deep-extend": ">=0.5.1",
+    "dotenv": "^8.0.0",
+    "extend": ">=3.0.2",
     "jest": "^24.5.0",
     "nodemon": "^1.18.10",
-    "supertest": "^3.0.0",
     "serverless-offline": "=4.10.0",
+    "supertest": "^3.0.0",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.3",
-    "deep-extend": ">=0.5.1",
-    "extend": ">=3.0.2",
-    "atob": ">=2.1.0"
+    "tsconfig-paths": "^3.7.0",
+    "tslint": "5.12.1",
+    "typescript": "^3.2.4"
   }
 }
