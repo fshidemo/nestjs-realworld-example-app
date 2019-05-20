@@ -13,7 +13,7 @@
 
 Clone the repository
 
-    git clone git@github.com:lujakob/nestjs-realworld-example-app.git
+    git clone git@github.com:fshidemo/nestjs-realworld-example-app.git
 
 Switch to the repo folder
 
@@ -178,3 +178,22 @@ $ ts-node src/swagger.ts
 Then browse http://localhost:3001/api
 
 **This function is for development.** If you want to use production, change package.json dependencies and serverless.yml.
+
+# Generate structure
+## Use Nest CLI
+```
+npm install -g @nestjs/cli
+nest [command] [...options]
+nest new app
+nest generate (:alias)
+```
+https://docs.nestjs.com/cli/usages
+## Use yeoman
+The to create an app, run
+```
+$ yo nestjs-app
+```
+For other components run
+```
+$ yo nestjs-app:[COMPONENT] [NAME] 
+```
