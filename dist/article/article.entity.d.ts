@@ -6,8 +6,8 @@ export declare class ArticleEntity {
     title: string;
     description: string;
     body: string;
-    created: Date;
-    updated: Date;
+    createdAt: Date;
+    updatedAt: Date;
     updateTimestamp(): void;
     tagList: string[];
     author: UserEntity;

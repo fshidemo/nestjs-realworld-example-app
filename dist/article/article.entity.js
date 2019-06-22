@@ -14,7 +14,7 @@ const user_entity_1 = require("../user/user.entity");
 const comment_entity_1 = require("./comment.entity");
 let ArticleEntity = class ArticleEntity {
     updateTimestamp() {
-        this.updated = new Date;
+        this.updatedAt = new Date;
     }
 };
 __decorate([
@@ -40,11 +40,11 @@ __decorate([
 __decorate([
     typeorm_1.Column({ type: 'timestamp', default: () => "CURRENT_TIMESTAMP" }),
     __metadata("design:type", Date)
-], ArticleEntity.prototype, "created", void 0);
+], ArticleEntity.prototype, "createdAt", void 0);
 __decorate([
     typeorm_1.Column({ type: 'timestamp', default: () => "CURRENT_TIMESTAMP" }),
     __metadata("design:type", Date)
-], ArticleEntity.prototype, "updated", void 0);
+], ArticleEntity.prototype, "updatedAt", void 0);
 __decorate([
     typeorm_1.BeforeUpdate(),
     __metadata("design:type", Function),

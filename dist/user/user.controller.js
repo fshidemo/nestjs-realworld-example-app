@@ -53,13 +53,16 @@ let UserController = class UserController {
     }
     login(loginUserDto) {
         return __awaiter(this, void 0, void 0, function* () {
-            const _user = yield this.userService.findOne(loginUserDto);
-            const errors = { User: ' not found' };
-            if (!_user)
+            const existedUser = yield this.userService.findOne(loginUserDto);
+            const errors = {
+                User: ' not found'
+            };
+            if (!existedUser) {
                 throw new http_exception_1.HttpException({ errors }, 401);
-            const token = yield this.userService.generateJWT(_user);
-            const { email, username, bio, image } = _user;
-            const user = { email, token, username, bio, image };
+            }
+            const token = yield this.userService.generateJWT(existedUser);
+            const { id, email, username, bio, image } = existedUser;
+            const user = { id, email, token, username, bio, image };
             return { user };
         });
     }

@@ -12,17 +12,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 let AppController = class AppController {
     root() {
-        return 'Hello World!';
+        return { status: 'ok' };
     }
 };
 __decorate([
     common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
+    __metadata("design:returntype", Object)
 ], AppController.prototype, "root", null);
 AppController = __decorate([
-    common_1.Controller('api')
+    common_1.Controller('app')
 ], AppController);
 exports.AppController = AppController;
 //# sourceMappingURL=app.controller.js.map

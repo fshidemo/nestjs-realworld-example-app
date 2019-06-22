@@ -13,5 +13,6 @@ exports.User = common_1.createParamDecorator((data, req) => {
         const decoded = jwt.verify(token[1], config_1.SECRET);
         return !!data ? decoded[data] : decoded.user;
     }
+    console.log('Can not find any user info', req.headers ? req.headers.authorization : 'No req header authorization');
 });
 //# sourceMappingURL=user.decorator.js.map

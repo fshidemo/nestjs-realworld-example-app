@@ -121,6 +121,7 @@ let UserService = class UserService {
     ;
     buildUserRO(user) {
         const userRO = {
+            id: user.id,
             username: user.username,
             email: user.email,
             bio: user.bio,

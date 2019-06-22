@@ -50,10 +50,12 @@ let ArticleService = class ArticleService {
             }
             if ('favorited' in query) {
                 const author = yield this.userRepository.findOne({ username: query.favorited });
-                const ids = author.favorites.map(el => el.id);
-                qb.andWhere("article.authorId IN (:ids)", { ids });
+                if (author.favorites) {
+                    const ids = author.favorites.map(el => el.id);
+                    qb.andWhere("article.authorId IN (:ids)", { ids });
+                }
             }
-            qb.orderBy('article.created', 'DESC');
+            qb.orderBy('article.createdAt', 'DESC');
             const articlesCount = yield qb.getCount();
             if ('limit' in query) {
                 qb.limit(query.limit);
@@ -72,7 +74,7 @@ let ArticleService = class ArticleService {
             const qb = yield typeorm_2.getRepository(article_entity_1.ArticleEntity)
                 .createQueryBuilder('article')
                 .where('article.authorId IN (:ids)', { ids });
-            qb.orderBy('article.created', 'DESC');
+            qb.orderBy('article.createdAt', 'DESC');
             const articlesCount = yield qb.getCount();
             if ('limit' in query) {
                 qb.limit(query.limit);
@@ -161,13 +163,18 @@ let ArticleService = class ArticleService {
             article.comments = [];
             const newArticle = yield this.articleRepository.save(article);
             const author = yield this.userRepository.findOne({ where: { id: userId } });
-            if (Array.isArray(author.articles)) {
-                author.articles.push(article);
+            if (author) {
+                if (Array.isArray(author.articles)) {
+                    author.articles.push(article);
+                }
+                else {
+                    author.articles = [article];
+                }
+                yield this.userRepository.save(author);
             }
             else {
-                author.articles = [article];
+                console.log('Can not find authors userId', userId);
             }
-            yield this.userRepository.save(author);
             return newArticle;
         });
     }

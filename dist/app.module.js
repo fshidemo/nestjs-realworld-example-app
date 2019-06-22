@@ -13,10 +13,11 @@ const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const article_module_1 = require("./article/article.module");
 const user_module_1 = require("./user/user.module");
-const typeorm_1 = require("@nestjs/typeorm");
-const typeorm_2 = require("typeorm");
+const database_module_1 = require("./database.module");
+const typeorm_1 = require("typeorm");
 const profile_module_1 = require("./profile/profile.module");
 const tag_module_1 = require("./tag/tag.module");
+const config_1 = require("./config");
 let ApplicationModule = class ApplicationModule {
     constructor(connection) {
         this.connection = connection;
@@ -25,7 +26,7 @@ let ApplicationModule = class ApplicationModule {
 ApplicationModule = __decorate([
     common_1.Module({
         imports: [
-            typeorm_1.TypeOrmModule.forRoot(),
+            database_module_1.DatabaseModule.forRoot(config_1.config),
             article_module_1.ArticleModule,
             user_module_1.UserModule,
             profile_module_1.ProfileModule,
@@ -36,7 +37,7 @@ ApplicationModule = __decorate([
         ],
         providers: []
     }),
-    __metadata("design:paramtypes", [typeorm_2.Connection])
+    __metadata("design:paramtypes", [typeorm_1.Connection])
 ], ApplicationModule);
 exports.ApplicationModule = ApplicationModule;
 //# sourceMappingURL=app.module.js.map
